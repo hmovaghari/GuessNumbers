@@ -1,4 +1,13 @@
 fn main()
 {
-    println!("Hello, world!");
+    loop
+    {
+        println!("Play again? y or n");
+        let mut input: String = String::new();
+        std::io::stdin().read_line(&mut input);
+        if input.trim().to_lowercase() != "y"
+        {
+            break;
+        }
+    }
 }
