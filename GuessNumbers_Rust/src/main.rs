@@ -8,13 +8,8 @@ fn main()
 {
     loop
     {
-        /* Generate4DigitRandomNumber */
         let randomNumbers: Vec<String> = Generate4DigitRandomNumber();
-        /* Generate4DigitRandomNumber */
-
-        /* Get4DigitNumberFromUserAndCheckItIn10Steps  */
         Get4DigitNumberFromUserAndCheckItIn10Steps(&randomNumbers);
-        /* Get4DigitNumberFromUserAndCheckItIn10Steps  */
 
         println!("{}", "Play again? y or n".bright_blue());
         let mut input: String = String::new();
@@ -24,7 +19,6 @@ fn main()
             break;
         }
     }
-    /* Play again? */
 }
 
 fn Get4DigitNumberFromUserAndCheckItIn10Steps(randomNumbers: &Vec<String>)
