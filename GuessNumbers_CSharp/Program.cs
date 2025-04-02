@@ -25,7 +25,7 @@
                 var isUserWin = Get4DigitNumberFromUserAndCheckIt(randomNumbers);
                 if (isUserWin)
                 {
-                    
+                    break;
                 }
             }
 
@@ -58,7 +58,32 @@
 
         private static bool Check4DigitNumber(List<string> randomNumbers, char[] input)
         {
-            return false;
+            var result = true;
+            var index = 0;
+            input.ToList().ForEach(i =>
+            {
+                var isCorrentNumber = i.ToString() == randomNumbers[index];
+                if (!isCorrentNumber)
+                {
+                    result = false;
+                }
+                if (!randomNumbers.Contains(i.ToString()))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                else if (isCorrentNumber)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                }
+                Console.Write(i);
+                ++index;
+            });
+            Console.WriteLine();
+            return result;
         }
 
 

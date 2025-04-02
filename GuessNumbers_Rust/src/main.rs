@@ -29,7 +29,7 @@ fn Get4DigitNumberFromUserAndCheckItIn10Steps(randomNumbers: &Vec<String>)
         let isUserWin = Get4DigitNumberFromUserAndCheckIt(&randomNumbers);
         if isUserWin
         {
-            
+            break;
         }
         guessSteps += 1;
     }
@@ -59,7 +59,32 @@ fn Get4DigitNumberFromUserAndCheckIt(randomNumbers: &Vec<String>) -> bool
 
 fn Check4DigitNumber(random_numbers: &[String], input_string: &str) -> bool
 {
-    return false;
+    let mut result = true;
+    let mut index = 0;
+    for i in input_string.trim().chars()
+    {
+        let i_string = format!("{}", i);
+        let isCorrentNumber = i_string == random_numbers[index];
+        if !isCorrentNumber
+        {
+            result = false;    
+        }
+        if !random_numbers.contains(&i_string)
+        {
+            print!("{}", i_string.red());
+        }
+        else if isCorrentNumber
+        {
+            print!("{}", i_string.green());
+        }
+        else
+        {
+            print!("{}", i_string.yellow());
+        }
+        index += 1;
+    }
+    println!();
+    return result;
 }
 
 fn Generate4DigitRandomNumber() -> Vec<String>
