@@ -8,20 +8,13 @@
         {
             do
             {
-                /* Generate4DigitRandomNumber */
                 List<string> randomNumbers = Generate4DigitRandomNumber();
-                /* Generate4DigitRandomNumber */
-
-                /* Get4DigitNumberFromUserAndCheckItIn10Steps  */
                 Get4DigitNumberFromUserAndCheckItIn10Steps(randomNumbers);
-                /* Get4DigitNumberFromUserAndCheckItIn10Steps  */
 
-                /* Play again? */
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Play again? y or n");
                 Console.ResetColor();
             } while (Console.ReadLine()?.ToLower() == "y");
-            /* Play again? */
         }
 
         private static void Get4DigitNumberFromUserAndCheckItIn10Steps(List<string> randomNumbers)
