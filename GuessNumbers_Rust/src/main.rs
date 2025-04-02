@@ -55,7 +55,6 @@ fn Get4DigitNumberFromUserAndCheckIt(randomNumbers: &Vec<String>) -> bool
         return false;
     }
     return Check4DigitNumber(&randomNumbers, &inputString);
-    // let mut input: Vec<String> = Vec::new();
 }
 
 fn Check4DigitNumber(random_numbers: &[String], input_string: &str) -> bool
