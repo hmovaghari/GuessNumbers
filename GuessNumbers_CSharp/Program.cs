@@ -1,33 +1,94 @@
-﻿
-do
+﻿namespace GerssNumbers
 {
-    /* Generate4DigitRandomNumber */
-    List<string> randomNumbers = Generate4DigitRandomNumber();
-    /* Generate4DigitRandomNumber */
-
-    /* Play again? */
-    Console.WriteLine("Play again? y or n");
-} while (Console.ReadLine()?.ToLower() == "y");
-/* Play again? */
-
-List<string> Generate4DigitRandomNumber()
-{
-    var result = new List<string>();
-    
-    var numbers = new List<string>();
-    for (int i = 0; i < 10; i++)
+    class Program
     {
-        numbers.Add(i.ToString());
-    }
+        public static string invalid4DigitNumber = "Invalid 4 digit number";
 
-    for (int i = 0; i < 4; i++)
-    {
-        Random random = new Random();
-        var from = i == 0 ? 1 : 0;
-        var index = random.Next(from, numbers.Count);
-        result.Add(numbers[index]);
-        numbers.RemoveAt(index);
-    }
+        public static void Main(string[] args)
+        {
+            do
+            {
+                /* Generate4DigitRandomNumber */
+                List<string> randomNumbers = Generate4DigitRandomNumber();
+                /* Generate4DigitRandomNumber */
 
-    return result;
+                /* Get4DigitNumberFromUserAndCheckItIn10Steps  */
+                Get4DigitNumberFromUserAndCheckItIn10Steps(randomNumbers);
+                /* Get4DigitNumberFromUserAndCheckItIn10Steps  */
+
+                /* Play again? */
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Play again? y or n");
+                Console.ResetColor();
+            } while (Console.ReadLine()?.ToLower() == "y");
+            /* Play again? */
+        }
+
+        private static void Get4DigitNumberFromUserAndCheckItIn10Steps(List<string> randomNumbers)
+        {
+            var guessSteps = 0;
+            for (guessSteps = 0; guessSteps < 10; guessSteps++)
+            {
+                var isUserWin = Get4DigitNumberFromUserAndCheckIt(randomNumbers);
+                if (isUserWin)
+                {
+                    
+                }
+            }
+
+            if (guessSteps == 10)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Game over");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("You win");
+            }
+        }
+
+        private static bool Get4DigitNumberFromUserAndCheckIt(List<string> randomNumbers)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Input your guess (4 digit number)");
+            Console.ResetColor();
+            var input = Console.ReadLine()?.ToCharArray();
+            if ((input?.Length ?? 0) != 4)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(invalid4DigitNumber);
+                return false;
+            }
+            return Check4DigitNumber(randomNumbers, input);
+        }
+
+        private static bool Check4DigitNumber(List<string> randomNumbers, char[] input)
+        {
+            return false;
+        }
+
+
+        private static List<string> Generate4DigitRandomNumber()
+        {
+            var result = new List<string>();
+            
+            var numbers = new List<string>();
+            for (int i = 0; i < 10; i++)
+            {
+                numbers.Add(i.ToString());
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                Random random = new Random();
+                var from = i == 0 ? 1 : 0;
+                var index = random.Next(from, numbers.Count);
+                result.Add(numbers[index]);
+                numbers.RemoveAt(index);
+            }
+
+            return result;
+        }
+    }
 }

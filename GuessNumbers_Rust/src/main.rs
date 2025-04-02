@@ -1,5 +1,8 @@
-use std::vec;
+use std::{io::Split, vec};
 use rand::Rng;
+use colored::Colorize;
+
+static GLOBAL_Invalid4DigitNumber: &str = "Invalid 4 digit number";
 
 fn main()
 {
@@ -9,8 +12,11 @@ fn main()
         let randomNumbers: Vec<String> = Generate4DigitRandomNumber();
         /* Generate4DigitRandomNumber */
 
-        /* Play again? */
-        println!("Play again? y or n");
+        /* Get4DigitNumberFromUserAndCheckItIn10Steps  */
+        Get4DigitNumberFromUserAndCheckItIn10Steps(&randomNumbers);
+        /* Get4DigitNumberFromUserAndCheckItIn10Steps  */
+
+        println!("{}", "Play again? y or n".bright_blue());
         let mut input: String = String::new();
         std::io::stdin().read_line(&mut input);
         if input.trim().to_lowercase() != "y"
@@ -19,6 +25,48 @@ fn main()
         }
     }
     /* Play again? */
+}
+
+fn Get4DigitNumberFromUserAndCheckItIn10Steps(randomNumbers: &Vec<String>)
+{
+    let mut guessSteps = 0;
+    while guessSteps < 10
+    {
+        let isUserWin = Get4DigitNumberFromUserAndCheckIt(&randomNumbers);
+        if isUserWin
+        {
+            
+        }
+        guessSteps += 1;
+    }
+
+    if guessSteps == 10
+    {
+        println!("{}", "Game over".red());
+    }
+    else
+    {
+        println!("{}", "You win".green());
+    }
+}
+
+fn Get4DigitNumberFromUserAndCheckIt(randomNumbers: &Vec<String>) -> bool
+{
+    println!("{}", "Input your guess (4 digit number)".bright_blue());
+    let mut inputString: String = String::new();
+    std::io::stdin().read_line(&mut inputString);
+    if inputString.trim().chars().count() != 4
+    {
+        println!("{}", GLOBAL_Invalid4DigitNumber.red());
+        return false;
+    }
+    return Check4DigitNumber(&randomNumbers, &inputString);
+    // let mut input: Vec<String> = Vec::new();
+}
+
+fn Check4DigitNumber(random_numbers: &[String], input_string: &str) -> bool
+{
+    return false;
 }
 
 fn Generate4DigitRandomNumber() -> Vec<String>
