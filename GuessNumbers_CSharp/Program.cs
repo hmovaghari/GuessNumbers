@@ -1,5 +1,6 @@
 ﻿namespace GerssNumbers
 {
+    //Test
     class Program
     {
         public static string invalid4DigitNumber = "Invalid 4 digit number";
